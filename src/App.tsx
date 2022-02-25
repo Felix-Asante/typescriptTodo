@@ -6,17 +6,20 @@ import { TaskCategory } from "./styles/TaskCategory";
 import { Modal } from "antd";
 import { Button } from "./styles/Button";
 import { InputField, TextArea } from "./styles/InputField.styled";
+import TaskCard from "./components/TaskCard";
 
-interface taskType {
+export interface taskType {
 	title: string;
 	description: string;
+	isDone: boolean;
+	id: number;
 }
+
 function App() {
 	const [showModal, setShowModal] = useState<boolean>(false);
-	const [task, setTask] = useState<taskType[]>();
-
-	const descriptionRef = useRef(null);
-	const titleRef = useRef(null);
+	const [tasks, setTasks] = useState<taskType[]>([]);
+	const descriptionRef = useRef<HTMLTextAreaElement | null>(null);
+	const titleRef = useRef<HTMLInputElement | null>(null);
 	// CLOSE MODAL
 	const handleCancel = () => {
 		setShowModal(false);
@@ -24,7 +27,16 @@ function App() {
 	// OPEN MODEL
 
 	const modelHandler = () => setShowModal(true);
-	const handleOk = () => {};
+	const handleOk = () => {
+		const description = String(descriptionRef?.current?.value.trim());
+		const title = String(titleRef?.current?.value.trim());
+
+		setTasks([
+			...tasks,
+			{ title, description, isDone: false, id: tasks.length + 1 },
+		]);
+		setShowModal(false);
+	};
 	return (
 		<React.Fragment>
 			<GlobalStyles />
@@ -34,6 +46,18 @@ function App() {
 					<Flex justify="space-between">
 						<TaskCategory color="secondary">
 							<h3>Active Tasks</h3>
+
+							{tasks.map((task) => (
+								<TaskCard {...task} />
+							))}
+							{tasks.length === 0 && (
+								<>
+									<p className="text-light cursor">
+										No task,{" "}
+										<span onClick={() => setShowModal(true)}>Add a Task</span>
+									</p>
+								</>
+							)}
 						</TaskCategory>
 						<TaskCategory>
 							<h3>In Progress</h3>

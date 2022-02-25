@@ -18,6 +18,13 @@ h3,h2,h1,h4,h5,h6{
 .mt-md{
     margin-top:30px;
 }
+.cursor{
+    cursor:pointer;
+}
+.text-light{
+color:${({ theme: { colors } }) => colors.light};
+}
+
 `;
 
 export const Container = styled.div`

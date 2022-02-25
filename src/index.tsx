@@ -12,6 +12,7 @@ const theme = {
 		},
 		secondary: "#32c3cd",
 		danger: "#eb6750",
+		light: "#ffff",
 	},
 };
 ReactDOM.render(
