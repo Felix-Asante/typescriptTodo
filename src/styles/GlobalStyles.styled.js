@@ -12,6 +12,12 @@ body{
     background:${({ theme: { colors } }) => colors.primary.main}
     
 }
+h3,h2,h1,h4,h5,h6{
+    margin-bottom:0;
+}
+.mt-md{
+    margin-top:30px;
+}
 `;
 
 export const Container = styled.div`

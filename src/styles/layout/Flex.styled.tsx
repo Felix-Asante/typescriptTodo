@@ -14,4 +14,5 @@ export const Flex = styled.div<propsTypes>`
 	justify-content: ${({ justify }) => justify || "flex-start"};
 	width: ${({ width }) => width || ""};
 	height: ${({ height }) => height || ""};
+	gap: 15px;
 `;
