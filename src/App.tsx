@@ -1,12 +1,11 @@
 import React from "react";
+import Header from "./components/Header";
 import { GlobalStyles } from "./styles/GlobalStyles.styled";
 function App() {
 	return (
 		<React.Fragment>
 			<GlobalStyles />
-			<div className="App">
-				<p>Typescript todo</p>
-			</div>
+			<Header />
 		</React.Fragment>
 	);
 }
